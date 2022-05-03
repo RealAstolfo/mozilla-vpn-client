@@ -69,6 +69,7 @@ VPNFlickable {
             label: "MasterCard"
             value: "Card ending in 5887"
             type: "default"
+            iconUrl: "qrc:/ui/resources/logos/android.svg"
         }
 
         ListElement {
@@ -138,8 +139,21 @@ VPNFlickable {
                     text: label
                     wrapMode: Text.WordWrap
 
-                    Layout.alignment: Qt.AlignLeft
                     Layout.fillWidth: true
+
+                    VPNIcon {
+                        id: labelIcon
+
+                        source: iconUrl
+                        sourceSize.height: VPNTheme.theme.iconSizeSmall * 1.5
+                        sourceSize.width: VPNTheme.theme.iconSizeSmall * 1.5
+                        visible: typeof(iconUrl) !== "undefined" && source !== ""
+
+                        anchors {
+                            left: parent.right
+                            verticalCenter: parent.verticalCenter
+                        }
+                    }
                 }
 
                 VPNInterLabel {
@@ -165,6 +179,8 @@ VPNFlickable {
                         ? VPNTheme.colors.green5
                         : VPNTheme.colors.red5
                     text: value === "active" ? "Active" : "Inactive"
+
+                    Layout.alignment: Qt.AlignRight
                 }
             }
 
