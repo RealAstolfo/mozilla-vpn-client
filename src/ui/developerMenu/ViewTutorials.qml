@@ -42,7 +42,8 @@ Item {
                     // I'm too lazy to create a proper view.
                     function showTutorialContent(tutorial) {
                         const list = [];
-                        list.push("Translate title: " + VPNl18n[tutorial.id]);
+                        list.push("Translate title: " + VPNl18n[tutorial.titleId]);
+                        list.push("Translate subtitle: " + VPNl18n[tutorial.subtitleId]);
                         list.push("Image: " + tutorial.image);
 
                         return list.join("\n");
@@ -55,6 +56,11 @@ Item {
                     // Only enable the list on features where devModeEnable has any impact
                     enabled: true
                     Layout.minimumHeight: VPNTheme.theme.rowHeight * 1.5
+
+                    onClicked: {
+                       VPNTutorial.play(tutorial);
+                       VPNCloseEventHandler.removeAllStackViews();
+                    }
                 }
             }
         }
